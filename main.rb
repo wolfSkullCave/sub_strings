@@ -9,7 +9,21 @@ def substring(word, array)
   result
 end
 
-word = 'below'
+def substrings(words, array)
+  words_array = words.split(/\W+/)
+  result = Hash.new(0)
+
+  words_array.each do |word|
+    array.each do |sub|
+      matches = word.scan(sub).length
+      result[sub] += matches if matches > 0
+    end
+  end
+
+  result
+end
+
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
-substring(word, dictionary)
+# substring('below', dictionary)
+substrings("Howdy partner, sit down! How's it going?", dictionary)
